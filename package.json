@@ -15,6 +15,14 @@
     "onCommand:extension.createMiniAppComponent"
   ],
   "main": "./out/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bugszhou/mini-app-template"
+  },
+  "homepage": "https://github.com/bugszhou/mini-app-template#mini-app-template-readme",
+  "bugs": {
+    "url": "https://github.com/bugszhou/mini-app-template/issues"
+  },
   "contributes": {
     "commands": [
       {

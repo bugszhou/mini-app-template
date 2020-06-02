@@ -8,18 +8,48 @@
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+No Requirements
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### 是否和文件夹同名`miniAppTemplate.useDirectoryName`
+* 例如：/pages/test/test 
+* 默认为false, 格式为：/pages/test/index，不和文件夹名相同
 
-For example:
+```
+{
+    "miniAppTemplate.useDirectoryName": false
+}
+```
 
-This extension contributes the following settings:
+### 文件后缀设置`miniAppTemplate.rules`
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+* js文件支持 `js`和`ts`
+* css文件支持 `scss`和原生的样式后缀（wxss/acss）
+
+```
+{
+  "miniAppTemplate.rules": {
+    "aliapp": {
+      "file": {
+        "json": "json",
+        "css": "scss",
+        "js": "ts",
+        "html": "axml"
+      }
+    },
+    "weapp": {
+      "file": {
+        "json": "json",
+        "css": "scss",
+        "js": "ts",
+        "html": "wxml"
+      }
+    }
+  }
+}
+```
+
 
 ## Known Issues
 
