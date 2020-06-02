@@ -95,7 +95,6 @@ async function handleCreate(info: any, createType: CreateType) {
 		showErrorMessage(`Directory is existed!`);
 		return;
 	}
-	console.log(fullPath);
 	// 2. 没有则新建文件夹
 	const [err] = await awaitWrap(mkdirp(fullPath));
 	if (err) {
