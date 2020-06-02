@@ -83,15 +83,16 @@
               "file": {
                 "json": "json",
                 "css": "scss",
-                "js": "ts",
+                "js": "js",
                 "html": "axml"
               }
             },
             "weapp": {
               "file": {
+                "json": "json",
                 "css": "scss",
-                "js": "ts",
-                "html": "axml"
+                "js": "js",
+                "html": "wxml"
               }
             }
           }
