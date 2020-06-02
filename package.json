@@ -5,7 +5,7 @@
   "version": "1.0.7",
   "publisher": "yirizhou",
   "engines": {
-    "vscode": "^1.1.0"
+    "vscode": "^1.40.0"
   },
   "categories": [
     "Other"
@@ -121,7 +121,7 @@
     "@types/mkdirp": "^1.0.0",
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.11.0",
-    "@types/vscode": "^1.45.0",
+    "@types/vscode": "^1.40.0",
     "@types/write": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
