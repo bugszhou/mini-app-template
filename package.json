@@ -2,7 +2,8 @@
   "name": "mini-app-template",
   "displayName": "Mini App Template",
   "description": "小程序组件模板插件",
-  "version": "0.0.1",
+  "version": "1.0.1",
+  "publisher": "yirizhou",
   "engines": {
     "vscode": "^1.45.0"
   },
@@ -10,7 +11,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.createMiniAppPage"
+    "onCommand:extension.createMiniAppPage",
+    "onCommand:extension.createMiniAppComponent"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -18,6 +20,10 @@
       {
         "command": "extension.createMiniAppPage",
         "title": "New Mini App Page"
+      },
+      {
+        "command": "extension.createMiniAppComponent",
+        "title": "New Mini App Component"
       }
     ],
     "menus": {
@@ -25,8 +31,72 @@
         {
           "command": "extension.createMiniAppPage",
           "group": "1_modification"
+        },
+        {
+          "command": "extension.createMiniAppComponent",
+          "group": "1_modification"
         }
       ]
+    }
+  },
+  "configuration": {
+    "type": "object",
+    "title": "Auto Close Tag configuration",
+    "properties": {
+      "miniAppTemplate.useDirectoryName": {
+        "type": "boolean",
+        "default": false
+      },
+      "miniAppTemplate.rules": {
+        "type": "object",
+        "properties": {
+          "aliapp": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "object",
+                "properties": {
+                  "json": "string",
+                  "css": "string",
+                  "js": "string",
+                  "html": "string"
+                }
+              }
+            }
+          },
+          "weapp": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "object",
+                "properties": {
+                  "json": "string",
+                  "css": "string",
+                  "js": "string",
+                  "html": "string"
+                }
+              }
+            }
+          }
+        },
+        "default": {
+          "aliapp": {
+            "file": {
+              "json": "json",
+              "css": "scss",
+              "js": "ts",
+              "html": "axml"
+            }
+          },
+          "weapp": {
+            "file": {
+              "css": "scss",
+              "js": "ts",
+              "html": "axml"
+            }
+          }
+        }
+      }
     }
   },
   "scripts": {
@@ -43,6 +113,7 @@
     "@types/mocha": "^7.0.2",
     "@types/node": "^13.11.0",
     "@types/vscode": "^1.45.0",
+    "@types/write": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
     "eslint": "^6.8.0",
@@ -53,9 +124,11 @@
   },
   "dependencies": {
     "@types/lodash.get": "^4.4.6",
+    "del": "^5.1.0",
     "lodash.get": "^4.4.2",
     "mkdirp": "^1.0.4",
     "path-type": "^4.0.0",
-    "valid-filename": "^3.1.0"
+    "valid-filename": "^3.1.0",
+    "write": "^2.0.0"
   }
 }
