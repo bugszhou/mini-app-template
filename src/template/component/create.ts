@@ -23,8 +23,7 @@ Component(options);
   if (styleType === "scss") {
     return `
 import "./style";
-${jsTmpl}
-    `;
+${jsTmpl}`;
   }
   return jsTmpl;
 }
