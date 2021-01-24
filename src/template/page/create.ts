@@ -40,7 +40,7 @@ export function genUsuallyTpl(opts: any) {
 function genJSONTpl() {
   return `
   {
-    "components": {}
+    "usingComponents": {}
   }
   `;
 }
