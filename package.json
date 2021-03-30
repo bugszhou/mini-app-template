@@ -43,6 +43,10 @@
         {
           "command": "extension.createMiniAppComponent",
           "group": "1_modification"
+        },
+        {
+          "command": "extension.createMiniAppNormalComponent",
+          "group": "1_modification"
         }
       ]
     },

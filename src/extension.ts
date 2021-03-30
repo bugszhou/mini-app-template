@@ -12,9 +12,10 @@ import del from "del";
 import { awaitWrap } from "./util";
 import pageGen from "./template/page";
 import componentGen from "./template/component";
+import normalComponentGen from "./template/normalComponent";
 
 export type MiniAppType = "aliapp" | "weapp";
-export type CreateType = "page" | "component";
+export type CreateType = "page" | "component" | "normalComponent";
 
 const { workspace } = vscode;
 const { showErrorMessage, showInputBox, showQuickPick, showInformationMessage } = vscode.window;
@@ -40,8 +41,15 @@ export function activate(context: vscode.ExtensionContext) {
 			await handleCreate(info, "component");
     },
   );
+	
+  let normalComponentDisposable = vscode.commands.registerCommand(
+    "extension.createMiniAppNormalComponent",
+    async (info) => {
+			await handleCreate(info, "normalComponent");
+    },
+  );
 
-  context.subscriptions.push(pageDisposable, componentDisposable);
+  context.subscriptions.push(pageDisposable, componentDisposable, normalComponentDisposable);
 }
 
 function getMiniAppTemplateConfig(type: MiniAppType) {
@@ -135,8 +143,15 @@ async function createTemplate(
       pathurl,
       type,
     });
-  } else {
+  } else if (createType === "component") {
     await createComponentTemplate({
+      useDirectoryName,
+      settings,
+      pathurl,
+      type,
+    });
+  } else {
+    await createNormalComponentTemplate({
       useDirectoryName,
       settings,
       pathurl,
@@ -198,6 +213,38 @@ async function createComponentTemplate(opts: {
     } else {
       try {
         await componentGen[type].genPreCSSTpl({
+          ...settings.file,
+          fullPath: pathurl,
+        });
+      } catch (e) {
+        console.error(e);
+        throw e;
+      }
+    }
+  }
+}
+
+async function createNormalComponentTemplate(opts: {
+  type: MiniAppType;
+  [key: string]: any;
+}) {
+  const { useDirectoryName, settings, pathurl, type } = opts;
+  const css = get(settings, "file.css", "scss");
+  if (!useDirectoryName) {
+    const tpls = normalComponentGen[type].genUsuallyTpl(settings.file);
+    try {
+      await write(join(pathurl, `index.${settings.file.js}`), tpls.js);
+      await write(join(pathurl, `index.${settings.file.html}`), tpls.html);
+      await write(join(pathurl, `index.${settings.file.json}`), tpls.json);
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+    if (css !== "scss") {
+      await write(join(pathurl, `index.${css}`), tpls.css);
+    } else {
+      try {
+        await normalComponentGen[type].genPreCSSTpl({
           ...settings.file,
           fullPath: pathurl,
         });
