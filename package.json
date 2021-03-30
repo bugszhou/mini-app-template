@@ -12,7 +12,8 @@
   ],
   "activationEvents": [
     "onCommand:extension.createMiniAppPage",
-    "onCommand:extension.createMiniAppComponent"
+    "onCommand:extension.createMiniAppComponent",
+    "onCommand:extension.createMiniAppNormalComponent"
   ],
   "main": "./out/extension.js",
   "repository": {
@@ -32,6 +33,10 @@
       {
         "command": "extension.createMiniAppComponent",
         "title": "New Mini App Component"
+      },
+      {
+        "command": "extension.createMiniAppNormalComponent",
+        "title": "New Mini Normal Component"
       }
     ],
     "menus": {
