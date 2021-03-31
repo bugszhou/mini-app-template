@@ -50,10 +50,6 @@ function genHtmlTpl() {
 
 export async function genPreCSSTpl(opts: any) {
   const { css, fullPath } = opts;
-  const [err] = await awaitWrap(mkdirp(join(fullPath, "style")));
-  if (err) {
-    throw err;
-  }
   const [errCss] = await awaitWrap(write(join(fullPath, `index.${css}`), ""));
   if (errCss) {
     throw errCss;
