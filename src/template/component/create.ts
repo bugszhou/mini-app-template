@@ -5,7 +5,7 @@ import * as write from "write";
 
 function genJsTpl(styleType = "scss") {
   const jsTmpl = `
-const options = {
+Component({
   data: {},
   options: {
     styleIsolation: "apply-shared",
@@ -14,11 +14,7 @@ const options = {
   observers: {},
   pageLifetimes: {},
   methods: {},
-};
-
-export default options;
-
-Component(options);
+});
 `;
   if (styleType === "scss") {
     return `
