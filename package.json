@@ -77,6 +77,19 @@
                     "js": "string",
                     "html": "string"
                   }
+                },
+                "otherFile": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": "string",
+                      "json": "string",
+                      "css": "string",
+                      "js": "string",
+                      "html": "string"
+                    }
+                  }
                 }
               }
             },
@@ -90,6 +103,19 @@
                     "css": "string",
                     "js": "string",
                     "html": "string"
+                  }
+                },
+                "otherFile": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": "string",
+                      "json": "string",
+                      "css": "string",
+                      "js": "string",
+                      "html": "string"
+                    }
                   }
                 }
               }

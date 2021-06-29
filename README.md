@@ -13,8 +13,9 @@ No Requirements
 ## Extension Settings
 
 ### 是否和文件夹同名`miniAppTemplate.useDirectoryName`
-* 例如：/pages/test/test 
-* 默认为false, 格式为：/pages/test/index，不和文件夹名相同
+
+- 例如：/pages/test/test
+- 默认为 false, 格式为：/pages/test/index，不和文件夹名相同
 
 ```
 {
@@ -24,10 +25,11 @@ No Requirements
 
 ### 文件后缀设置`miniAppTemplate.rules`
 
-* js文件支持 `js`和`ts`
-* css文件支持 `scss`和原生的样式后缀（wxss/acss）
+- js 文件支持 `js`和`ts`
+- css 文件支持 `scss`和原生的样式后缀（wxss/acss）
+- `otherFile`其他的模板结构类型，是数组结构
 
-```
+```json
 {
   "miniAppTemplate.rules": {
     "aliapp": {
@@ -36,7 +38,16 @@ No Requirements
         "css": "scss",
         "js": "ts",
         "html": "axml"
-      }
+      },
+      "otherFile": [
+        {
+          "name": "js",
+          "json": "json",
+          "css": "scss",
+          "js": "js",
+          "html": "axml"
+        }
+      ]
     },
     "weapp": {
       "file": {
@@ -44,12 +55,20 @@ No Requirements
         "css": "scss",
         "js": "ts",
         "html": "wxml"
-      }
+      },
+      "otherFile": [
+        {
+          "name": "js",
+          "json": "json",
+          "css": "scss",
+          "js": "js",
+          "html": "wxml"
+        }
+      ]
     }
   }
 }
 ```
-
 
 ## Known Issues
 
@@ -71,19 +90,19 @@ Fixed issue #.
 
 Added features X, Y, and Z.
 
------------------------------------------------------------------------------------------------------------
+---
 
 ## Working with Markdown
 
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+**Note:** You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
+- Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
+- Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
+- Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
 
 ### For more information
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
+- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
