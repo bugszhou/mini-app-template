@@ -37,7 +37,8 @@ No Requirements
         "json": "json",
         "css": "scss",
         "js": "ts",
-        "html": "axml"
+        "html": "axml",
+        "class": true // 使用class风格
       },
       "otherFile": [
         {
@@ -54,7 +55,8 @@ No Requirements
         "json": "json",
         "css": "scss",
         "js": "ts",
-        "html": "wxml"
+        "html": "wxml",
+        "class": true // 使用class风格
       },
       "otherFile": [
         {
