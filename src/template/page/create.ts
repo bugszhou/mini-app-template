@@ -5,16 +5,13 @@ import * as write from "write";
 
 function genJsTpl(styleType = "scss", jsType = "js") {
   const jsTmpl = `
-const options = {
+  
+Page({
   data: {},
   onLoad()${jsType === "ts" ? ": void" : ""} {
     console.log("onLoad");
   },
-};
-
-export default options;
-
-Page(options);
+});
 `;
   if (styleType === "scss") {
     return `
@@ -50,7 +47,7 @@ function genCSSTpl() {
 }
 
 function genHtmlTpl() {
-  return `<view></view>`;
+  return `<view>Hello World</view>`;
 }
 
 export async function genPreCSSTpl(opts: any) {
