@@ -103,7 +103,7 @@ export function genClassAliappTpl(opts: any) {
 
 export function genUsuallyTpl(opts: any) {
   return {
-    js: genJsTpl(opts.css, opts.js, opts),
+    js: genJsTpl(opts.css, opts.js),
     css: genCSSTpl(),
     html: genHtmlTpl(),
     json: genJSONTpl(),
