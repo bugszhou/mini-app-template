@@ -1,5 +1,5 @@
-import { genPreCSSTpl, genUsuallyTpl } from "./create";
-export default {
+import { genPreCSSTpl, genUsuallyTpl, genClassWeappTpl, genClassAliappTpl } from "./create";
+const processor: any = {
   aliapp: {
     genPreCSSTpl,
     genUsuallyTpl,
@@ -8,4 +8,14 @@ export default {
     genPreCSSTpl,
     genUsuallyTpl,
   },
+  weappClass: {
+    genPreCSSTpl,
+    genUsuallyTpl: genClassWeappTpl,
+  },
+  aliappClass: {
+    genPreCSSTpl,
+    genUsuallyTpl: genClassAliappTpl,
+  }
 };
+
+export default processor;

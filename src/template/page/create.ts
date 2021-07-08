@@ -5,7 +5,6 @@ import * as write from "write";
 
 function genJsTpl(styleType = "scss", jsType = "js") {
   const jsTmpl = `
-  
 Page({
   data: {},
   onLoad()${jsType === "ts" ? ": void" : ""} {
@@ -21,13 +20,90 @@ ${jsTmpl}`;
   return jsTmpl;
 }
 
-export function genUsuallyTpl(opts: any) {
-  genJsTpl(opts.css);
-  genHtmlTpl();
-  genCSSTpl();
-  genJSONTpl();
+function genClassWeappJsTpl(styleType = "scss") {
+  const jsTmpl = `
+import { PageBase } from "mipp";
+
+interface IData {
+  welcomeStr: string;
+}
+
+export default class IndexController
+  extends PageBase<IData>
+  implements IMippWePage.ILifetime {
+
+  data: IData = {
+    welcomeStr: "Index Page",
+  };
+
+  onLoad(): void {
+    console.log("onLoad: ", this);
+  }
+}
+
+Page(new IndexController());
+`;
+  if (styleType === "scss") {
+    return `
+import "./style";
+${jsTmpl}`;
+  }
+  return jsTmpl;
+}
+
+function genClassAliappJsTpl(styleType = "scss") {
+  const jsTmpl = `
+import { PageBase } from "mipp-ali";
+
+interface IData {
+  welcomeStr: string;
+}
+
+class IndexController
+  extends PageBase<IData>
+  implements IMippAliPage.ILifetime
+{
+
+  data: IData = {
+    welcomeStr: "Index Page",
+  };
+
+  onLoad(): void {
+    console.log("onLoad: ", this);
+  }
+}
+
+Page(new IndexController());
+`;
+  if (styleType === "scss") {
+    return `
+import "./style";
+${jsTmpl}`;
+  }
+  return jsTmpl;
+}
+
+export function genClassWeappTpl(opts: any) {
   return {
-    js: genJsTpl(opts.css, opts.js),
+    js: genClassWeappJsTpl(opts.css),
+    css: genCSSTpl(),
+    html: genHtmlTpl(),
+    json: genJSONTpl(),
+  };
+}
+
+export function genClassAliappTpl(opts: any) {
+  return {
+    js: genClassAliappJsTpl(opts.css),
+    css: genCSSTpl(),
+    html: genHtmlTpl(),
+    json: genJSONTpl(),
+  };
+}
+
+export function genUsuallyTpl(opts: any) {
+  return {
+    js: genJsTpl(opts.css, opts.js, opts),
     css: genCSSTpl(),
     html: genHtmlTpl(),
     json: genJSONTpl(),
@@ -57,8 +133,12 @@ export async function genPreCSSTpl(opts: any) {
   if (err) {
     throw err;
   }
-  const [errJs] = await awaitWrap(write(join(fullPath, `style/index.${js}`), cssJsTpl));
-  const [errCss] = await awaitWrap(write(join(fullPath, `style/index.${css}`), ""));
+  const [errJs] = await awaitWrap(
+    write(join(fullPath, `style/index.${js}`), cssJsTpl),
+  );
+  const [errCss] = await awaitWrap(
+    write(join(fullPath, `style/index.${css}`), ""),
+  );
   if (errJs || errCss) {
     throw errJs || errCss;
   }

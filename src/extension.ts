@@ -191,7 +191,8 @@ async function createPageTemplate(opts: {
   const { useDirectoryName, settings, pathurl, type } = opts;
   const css = get(settings, "file.css", "scss");
   if (!useDirectoryName) {
-    const tpls = pageGen[type].genUsuallyTpl(settings.file);
+    const typeKey = `${type}${settings.class === true ? "" : "Class"}`;
+    const tpls = pageGen[typeKey].genUsuallyTpl(settings.file);
     try {
       await write(join(pathurl, `index.${settings.file.js}`), tpls.js);
       await write(join(pathurl, `index.${settings.file.html}`), tpls.html);
