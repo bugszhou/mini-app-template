@@ -169,7 +169,7 @@
   "dependencies": {
     "@types/lodash.get": "^4.4.6",
     "del": "^5.1.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "lodash.get": "^4.4.2",
     "mkdirp": "^1.0.4",
     "path-type": "^4.0.0",
