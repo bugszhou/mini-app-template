@@ -2,7 +2,7 @@
   "name": "mini-app-template",
   "displayName": "Mini App Template",
   "description": "小程序组件模板插件",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "publisher": "yirizhou",
   "engines": {
     "vscode": "^1.40.0"
