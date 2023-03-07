@@ -22,15 +22,14 @@ ${jsTmpl}`;
 
 function genClassWeappJsTpl(styleType = "scss") {
   const jsTmpl = `
-import { PageBase } from "mipp";
+import { PageBase } from "mini-program-base";
 
 interface IData {
   welcomeStr: string;
 }
 
-export default class IndexController
-  extends PageBase<IData>
-  implements IMippWePage.ILifetime {
+export default class PageView
+  extends PageBase<IData> {
 
   data: IData = {
     welcomeStr: "Index Page",
@@ -41,7 +40,7 @@ export default class IndexController
   }
 }
 
-Page(new IndexController());
+PageBase.render(new PageView());
 `;
   if (styleType === "scss") {
     return `
@@ -53,15 +52,14 @@ ${jsTmpl}`;
 
 function genClassAliappJsTpl(styleType = "scss") {
   const jsTmpl = `
-import { PageBase } from "mipp-ali";
+import { PageBase } from "mini-program-base";
 
 interface IData {
   welcomeStr: string;
 }
 
-class IndexController
+class PageView
   extends PageBase<IData>
-  implements IMippAliPage.ILifetime
 {
 
   data: IData = {
@@ -73,7 +71,7 @@ class IndexController
   }
 }
 
-Page(new IndexController());
+PageBase.render(new PageView());
 `;
   if (styleType === "scss") {
     return `

@@ -5,16 +5,18 @@ import * as write from "write";
 
 function genJsTpl(styleType = "scss") {
   const jsTmpl = `
-Component({
-  data: {},
-  options: {
+
+import { ComponentBase, IComponentData, IMiniComponentOptions } from "mini-program-base";
+
+Class CustomComponent extends ComponentBase<unknown> {
+  data: IComponentData<TaskContent, unknown> = Object.create(null);
+
+  options: IMiniComponentOptions = {
     styleIsolation: "apply-shared",
-  },
-  properties: {},
-  observers: {},
-  pageLifetimes: {},
-  methods: {},
-});
+  };
+}
+
+ComponentBase.render(new CustomComponent());
 `;
   if (styleType === "scss") {
     return `
@@ -39,9 +41,9 @@ export function genUsuallyTpl(opts: any) {
 
 function genJSONTpl() {
   return `
-  {
-    "component": true
-  }
+{
+  "component": true
+}
   `;
 }
 
