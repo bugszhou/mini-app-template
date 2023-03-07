@@ -8,8 +8,8 @@ function genJsTpl(styleType = "scss") {
 
 import { ComponentBase, IComponentData, IMiniComponentOptions } from "mini-program-base";
 
-Class CustomComponent extends ComponentBase<unknown> {
-  data: IComponentData<TaskContent, unknown> = Object.create(null);
+class CustomComponent extends ComponentBase<unknown> {
+  data: IComponentData<CustomComponent, unknown> = Object.create(null);
 
   options: IMiniComponentOptions = {
     styleIsolation: "apply-shared",
