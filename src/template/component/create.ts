@@ -3,20 +3,20 @@ import * as mkdirp from "mkdirp";
 import { join } from "path";
 import * as write from "write";
 
-function genJsTpl(styleType = "scss") {
+function genJsTpl(styleType = "scss", fileName = "Custom") {
   const jsTmpl = `
 
 import { ComponentBase, IComponentData, IMiniComponentOptions } from "mini-program-base";
 
-class CustomComponent extends ComponentBase<unknown> {
-  data: IComponentData<CustomComponent, unknown> = Object.create(null);
+class ${fileName}Component extends ComponentBase<unknown> {
+  data: IComponentData<${fileName}Component, unknown> = Object.create(null);
 
   options: IMiniComponentOptions = {
     styleIsolation: "apply-shared",
   };
 }
 
-ComponentBase.render(new CustomComponent());
+ComponentBase.render(new ${fileName}Component());
 `;
   if (styleType === "scss") {
     return `
@@ -26,13 +26,13 @@ ${jsTmpl}`;
   return jsTmpl;
 }
 
-export function genUsuallyTpl(opts: any) {
+export function genUsuallyTpl(opts: any, fileName = "Custom") {
   genJsTpl(opts.css);
   genHtmlTpl();
   genCSSTpl();
   genJSONTpl();
   return {
-    js: genJsTpl(opts.css),
+    js: genJsTpl(opts.css, fileName),
     css: genCSSTpl(),
     html: genHtmlTpl(),
     json: genJSONTpl(),

@@ -20,7 +20,7 @@ ${jsTmpl}`;
   return jsTmpl;
 }
 
-function genClassWeappJsTpl(styleType = "scss") {
+function genClassWeappJsTpl(styleType = "scss", fileName = "View") {
   const jsTmpl = `
 import { PageBase } from "mini-program-base";
 
@@ -28,7 +28,7 @@ interface IData {
   welcomeStr: string;
 }
 
-export default class PageView
+export default class ${fileName}Page
   extends PageBase<IData> {
 
   data: IData = {
@@ -40,7 +40,7 @@ export default class PageView
   }
 }
 
-PageBase.render(new PageView());
+PageBase.render(new ${fileName}Page());
 `;
   if (styleType === "scss") {
     return `
@@ -50,7 +50,7 @@ ${jsTmpl}`;
   return jsTmpl;
 }
 
-function genClassAliappJsTpl(styleType = "scss") {
+function genClassAliappJsTpl(styleType = "scss", fileName = "View") {
   const jsTmpl = `
 import { PageBase } from "mini-program-base";
 
@@ -58,7 +58,7 @@ interface IData {
   welcomeStr: string;
 }
 
-class PageView
+class ${fileName}Page
   extends PageBase<IData>
 {
 
@@ -71,7 +71,7 @@ class PageView
   }
 }
 
-PageBase.render(new PageView());
+PageBase.render(new ${fileName}Page());
 `;
   if (styleType === "scss") {
     return `
@@ -81,18 +81,18 @@ ${jsTmpl}`;
   return jsTmpl;
 }
 
-export function genClassWeappTpl(opts: any) {
+export function genClassWeappTpl(opts: any, fileName = "View") {
   return {
-    js: genClassWeappJsTpl(opts.css),
+    js: genClassWeappJsTpl(opts.css, fileName),
     css: genCSSTpl(),
     html: genHtmlTpl(),
     json: genJSONTpl(),
   };
 }
 
-export function genClassAliappTpl(opts: any) {
+export function genClassAliappTpl(opts: any, fileName = "View") {
   return {
-    js: genClassAliappJsTpl(opts.css),
+    js: genClassAliappJsTpl(opts.css, fileName),
     css: genCSSTpl(),
     html: genHtmlTpl(),
     json: genJSONTpl(),

@@ -1,11 +1,11 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-import { join } from "path";
+import { basename, join } from "path";
 import { existsSync } from "fs";
 import { isDirectory } from "path-type";
 import validFileName from "valid-filename";
-import { get } from "lodash";
+import { capitalize, get } from "lodash";
 import * as mkdirp from "mkdirp";
 import * as write from "write";
 import del from "del";
@@ -192,11 +192,16 @@ async function createPageTemplate(opts: {
   const css = get(settings, "file.css", "scss");
   if (!useDirectoryName) {
     const typeKey = `${type}${settings.class === true ? "" : "Class"}`;
-    const tpls = pageGen[typeKey].genUsuallyTpl(settings.file);
+
+    const tpls = pageGen[typeKey].genUsuallyTpl(
+      settings.file,
+      capitalize(basename(pathurl)),
+    );
     try {
       await write(join(pathurl, `index.${settings.file.js}`), tpls.js);
       await write(join(pathurl, `index.${settings.file.html}`), tpls.html);
       await write(join(pathurl, `index.${settings.file.json}`), tpls.json);
+      await write(join(pathurl, `./__interface__/index.d.ts`), "");
     } catch (e) {
       console.error(e);
       throw e;
@@ -224,11 +229,15 @@ async function createComponentTemplate(opts: {
   const { useDirectoryName, settings, pathurl, type } = opts;
   const css = get(settings, "file.css", "scss");
   if (!useDirectoryName) {
-    const tpls = componentGen[type].genUsuallyTpl(settings.file);
+    const tpls = componentGen[type].genUsuallyTpl(
+      settings.file,
+      capitalize(basename(pathurl)),
+    );
     try {
       await write(join(pathurl, `index.${settings.file.js}`), tpls.js);
       await write(join(pathurl, `index.${settings.file.html}`), tpls.html);
       await write(join(pathurl, `index.${settings.file.json}`), tpls.json);
+      await write(join(pathurl, `./__interface__/index.d.ts`), "");
     } catch (e) {
       console.error(e);
       throw e;
