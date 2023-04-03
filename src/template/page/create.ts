@@ -23,16 +23,13 @@ ${jsTmpl}`;
 function genClassWeappJsTpl(styleType = "scss", fileName = "View") {
   const jsTmpl = `
 import { PageBase } from "mini-program-base";
-
-interface IData {
-  welcomeStr: string;
-}
+import { I${fileName}Page } from "./__interface__/index";
 
 export default class ${fileName}Page
-  extends PageBase<IData> {
+  extends PageBase<I${fileName}Page.IData> {
 
-  data: IData = {
-    welcomeStr: "Index Page",
+  data: I${fileName}Page.IData = {
+    helloWord: "Index Page",
   };
 
   onLoad(): void {
@@ -45,6 +42,7 @@ PageBase.render(new ${fileName}Page());
   if (styleType === "scss") {
     return `
 import "./style";
+
 ${jsTmpl}`;
   }
   return jsTmpl;
@@ -53,17 +51,14 @@ ${jsTmpl}`;
 function genClassAliappJsTpl(styleType = "scss", fileName = "View") {
   const jsTmpl = `
 import { PageBase } from "mini-program-base";
-
-interface IData {
-  welcomeStr: string;
-}
+import { I${fileName}Page } from "./__interface__/index";
 
 class ${fileName}Page
-  extends PageBase<IData>
+  extends PageBase<I${fileName}Page.IData>
 {
 
-  data: IData = {
-    welcomeStr: "Index Page",
+  data: I${fileName}Page.IData = {
+    helloWord: "Index Page",
   };
 
   onLoad(): void {
@@ -76,9 +71,19 @@ PageBase.render(new ${fileName}Page());
   if (styleType === "scss") {
     return `
 import "./style";
+
 ${jsTmpl}`;
   }
   return jsTmpl;
+}
+
+function generateInterface(fileName = "") {
+  return `export declare namespace I${fileName}Page {
+  // 声明data中的数据类型
+  interface IData {
+    helloWord: string;
+  }
+}`;
 }
 
 export function genClassWeappTpl(opts: any, fileName = "View") {
@@ -87,6 +92,7 @@ export function genClassWeappTpl(opts: any, fileName = "View") {
     css: genCSSTpl(),
     html: genHtmlTpl(),
     json: genJSONTpl(),
+    interface: generateInterface(fileName),
   };
 }
 
@@ -96,6 +102,7 @@ export function genClassAliappTpl(opts: any, fileName = "View") {
     css: genCSSTpl(),
     html: genHtmlTpl(),
     json: genJSONTpl(),
+    interface: generateInterface(fileName),
   };
 }
 

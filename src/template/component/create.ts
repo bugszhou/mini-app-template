@@ -26,6 +26,15 @@ ${jsTmpl}`;
   return jsTmpl;
 }
 
+function generateInterface(fileName = "") {
+  return `export declare namespace I${fileName}Component {
+  // 声明data中的数据类型
+  interface IData {
+    helloWord: string;
+  }
+}`;
+}
+
 export function genUsuallyTpl(opts: any, fileName = "Custom") {
   genJsTpl(opts.css);
   genHtmlTpl();
@@ -36,6 +45,7 @@ export function genUsuallyTpl(opts: any, fileName = "Custom") {
     css: genCSSTpl(),
     html: genHtmlTpl(),
     json: genJSONTpl(),
+    interface: generateInterface(),
   };
 }
 
