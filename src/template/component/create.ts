@@ -45,7 +45,7 @@ export function genUsuallyTpl(opts: any, fileName = "Custom") {
     css: genCSSTpl(),
     html: genHtmlTpl(),
     json: genJSONTpl(),
-    interface: generateInterface(),
+    interface: generateInterface(fileName),
   };
 }
 
