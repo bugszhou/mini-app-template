@@ -5,7 +5,7 @@ import { basename, join } from "path";
 import { existsSync } from "fs";
 import { isDirectory } from "path-type";
 import validFileName from "valid-filename";
-import { upperFirst, get } from "lodash";
+import { upperFirst, get, camelCase } from "lodash";
 import * as mkdirp from "mkdirp";
 import * as write from "write";
 import del from "del";
@@ -195,7 +195,7 @@ async function createPageTemplate(opts: {
 
     const tpls = pageGen[typeKey].genUsuallyTpl(
       settings.file,
-      upperFirst(basename(pathurl)),
+      upperFirst(camelCase(basename(pathurl))),
     );
     try {
       await write(join(pathurl, `index.${settings.file.js}`), tpls.js);
@@ -231,7 +231,7 @@ async function createComponentTemplate(opts: {
   if (!useDirectoryName) {
     const tpls = componentGen[type].genUsuallyTpl(
       settings.file,
-      upperFirst(basename(pathurl)),
+      upperFirst(camelCase(basename(pathurl))),
     );
     try {
       await write(join(pathurl, `index.${settings.file.js}`), tpls.js);
