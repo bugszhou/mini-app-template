@@ -201,6 +201,7 @@ async function createPageTemplate(opts: {
       await write(join(pathurl, `index.${settings.file.js}`), tpls.js);
       await write(join(pathurl, `index.${settings.file.html}`), tpls.html);
       await write(join(pathurl, `index.${settings.file.json}`), tpls.json);
+      await write(join(pathurl, `README.md`), `# ${upperFirst(camelCase(basename(pathurl)))} \n`);
       await write(join(pathurl, `./__interface__/index.d.ts`), tpls.interface || "");
     } catch (e) {
       console.error(e);
@@ -237,6 +238,7 @@ async function createComponentTemplate(opts: {
       await write(join(pathurl, `index.${settings.file.js}`), tpls.js);
       await write(join(pathurl, `index.${settings.file.html}`), tpls.html);
       await write(join(pathurl, `index.${settings.file.json}`), tpls.json);
+      await write(join(pathurl, `README.md`), `# ${upperFirst(camelCase(basename(pathurl)))} \n`);
       await write(join(pathurl, `./__interface__/index.d.ts`), tpls.interface || "");
     } catch (e) {
       console.error(e);
@@ -270,6 +272,7 @@ async function createNormalComponentTemplate(opts: {
       await write(join(pathurl, `index.${settings.file.js}`), tpls.js);
       await write(join(pathurl, `index.${settings.file.html}`), tpls.html);
       await write(join(pathurl, `index.${settings.file.json}`), tpls.json);
+      await write(join(pathurl, `README.md`), `# ${upperFirst(camelCase(basename(pathurl)))} \n`);
     } catch (e) {
       console.error(e);
       throw e;
