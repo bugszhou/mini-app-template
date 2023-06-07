@@ -7,6 +7,7 @@ function genJsTpl(styleType = "scss", fileName = "Custom") {
   const jsTmpl = `
 
 import { ComponentBase, IComponentData, IMiniComponentOptions } from "mini-program-base";
+import { I${fileName}Component } from "./__interface__";
 
 class ${fileName}Component extends ComponentBase<unknown> {
   data: IComponentData<${fileName}Component, unknown> = Object.create(null);
@@ -14,6 +15,10 @@ class ${fileName}Component extends ComponentBase<unknown> {
   options: IMiniComponentOptions = {
     styleIsolation: "apply-shared",
   };
+
+  properties: I${fileName}Component.IProps = {
+    from: "default",
+  }
 }
 
 ComponentBase.render(new ${fileName}Component());
@@ -31,6 +36,10 @@ function generateInterface(fileName = "") {
   // 声明data中的数据类型
   interface IData {
     helloWord: string;
+  }
+
+  interface IProps {
+    from: string;
   }
 }`;
 }
@@ -58,7 +67,11 @@ function genJSONTpl() {
 }
 
 function genCSSTpl() {
-  return ``;
+  return `
+view {
+  color: #000;
+}
+`;
 }
 
 function genHtmlTpl() {
