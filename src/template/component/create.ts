@@ -67,8 +67,7 @@ function genJSONTpl() {
 }
 
 function genCSSTpl() {
-  return `
-view {
+  return `view {
   color: #000;
 }
 `;
