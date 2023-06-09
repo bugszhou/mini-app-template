@@ -86,7 +86,7 @@ export async function genPreCSSTpl(opts: any) {
     throw err;
   }
   const [errJs] = await awaitWrap(write(join(fullPath, `style/index.${js}`), cssJsTpl));
-  const [errCss] = await awaitWrap(write(join(fullPath, `style/index.${css}`), ""));
+  const [errCss] = await awaitWrap(write(join(fullPath, `style/index.${css}`), genCSSTpl()));
   if (errJs || errCss) {
     throw errJs || errCss;
   }
